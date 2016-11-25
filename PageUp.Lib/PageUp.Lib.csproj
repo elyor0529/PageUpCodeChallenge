@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\LogExtensions.cs" />
     <Compile Include="Infrastructure\Abstractions\DeliveryBase.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Infrastructure\Classes\DeliveryItem.cs" />

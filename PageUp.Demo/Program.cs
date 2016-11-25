@@ -55,18 +55,8 @@ namespace PageUp.Demo
 
                 var box = new ProductBox(depth.ChangeType<int>(), height.ChangeType<int>(), width.ChangeType<int>());
                 var delivery = new DeliveryItem(box, weight.ChangeType<double>());
-                var rule = delivery.Rule.GetDescription();
-                var cost = delivery.GetCost();
 
-                Console.WriteLine("Category: {0}", rule);
-                if (cost != null)
-                {
-                    Console.WriteLine("Cost: ${0}", cost);
-                }
-                else
-                {
-                    Console.WriteLine("Cost: N/A");
-                }
+                delivery.Print();
 
                 Console.ReadKey();
                 Console.Clear();
