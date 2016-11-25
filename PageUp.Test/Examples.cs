@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageUp.Lib.Extensions;
 using PageUp.Lib.Infrastructure.Classes;
 using PageUp.Lib.Infrastructure.Interfaces;
+using PageUp.Lib.Logging;
 using PageUp.Lib.Models;
 
 namespace PageUp.Test

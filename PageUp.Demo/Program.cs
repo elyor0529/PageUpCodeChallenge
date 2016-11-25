@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using PageUp.Lib;
 using PageUp.Lib.Extensions;
 using PageUp.Lib.Infrastructure.Classes;
+using PageUp.Lib.Logging;
 using PageUp.Lib.Models;
 
 namespace PageUp.Demo

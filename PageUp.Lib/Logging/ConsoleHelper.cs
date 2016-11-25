@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PageUp.Lib.Extensions;
 using PageUp.Lib.Infrastructure.Interfaces;
 
-namespace PageUp.Lib.Extensions
+namespace PageUp.Lib.Logging
 {
     public static class LogExtensions
     {
@@ -15,11 +12,11 @@ namespace PageUp.Lib.Extensions
         /// <param name="delivery"></param>
         public static void Print(this IDelivery delivery)
         {
-
             var rule = delivery.Rule.GetDescription();
             var cost = delivery.GetCost();
 
             Console.WriteLine("Category: {0}", rule);
+
             if (cost != null)
             {
                 Console.WriteLine("Cost: ${0}", cost);
