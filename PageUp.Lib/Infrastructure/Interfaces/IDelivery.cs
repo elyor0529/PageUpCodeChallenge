@@ -12,13 +12,13 @@ namespace PageUp.Lib.Infrastructure.Interfaces
         /// <summary>
         /// Product box
         /// </summary>
-        ProductBox Box { get; }
+        ProductBox Box { get; set; }
 
         /// <summary>
         /// Product volume
         /// </summary>
         /// <returns></returns>
-        int GetVolume();
+        int Volume { get; }
 
         /// <summary>
         /// Delivery Rule
@@ -28,7 +28,7 @@ namespace PageUp.Lib.Infrastructure.Interfaces
         /// <summary>
         /// Delivery cost
         /// </summary>
-        decimal? Cost { get; }
+        decimal? GetCost();
 
         /// <summary>
         /// Product weight

@@ -18,7 +18,7 @@ namespace PageUp.Demo
             while (true)
             {
 
-                Console.Write("Enter Weight in kg:");
+                Console.Write("Enter Weight in kg: ");
                 var weight = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(weight))
@@ -27,7 +27,7 @@ namespace PageUp.Demo
                     continue;
                 }
 
-                Console.Write("Enter Height in cm:");
+                Console.Write("Enter Height in cm: ");
                 var height = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(height))
                 {
@@ -35,7 +35,7 @@ namespace PageUp.Demo
                     continue;
                 }
 
-                Console.Write("Enter Width in cm:");
+                Console.Write("Enter Width in cm: ");
                 var width = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(width))
                 {
@@ -43,7 +43,7 @@ namespace PageUp.Demo
                     continue;
                 }
 
-                Console.Write("Enter Depth:");
+                Console.Write("Enter Depth: ");
                 var depth = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(depth))
                 {
@@ -54,20 +54,23 @@ namespace PageUp.Demo
                 Console.WriteLine("-------------------------");
 
                 var box = new ProductBox(depth.ChangeType<int>(), height.ChangeType<int>(), width.ChangeType<int>());
-                var delivery = new DeliveryItem(box);
+                var delivery = new DeliveryItem(box, weight.ChangeType<double>());
+                var rule = delivery.Rule.GetDescription();
+                var cost = delivery.GetCost();
 
-                Console.WriteLine("Category:{0}", delivery.Rule.GetDescription());
-                Console.WriteLine("Cost:{0:C0}", delivery.GetVolume());
-
-                var returnKey = Console.ReadKey();
-                if (returnKey.Key == ConsoleKey.Escape)
+                Console.WriteLine("Category: {0}", rule);
+                if (cost != null)
                 {
-                    Console.Clear();
-                    continue;
+                    Console.WriteLine("Cost: ${0}", cost);
+                }
+                else
+                {
+                    Console.WriteLine("Cost: N/A");
                 }
 
-                //wait 10 sek
-                Thread.Sleep(10 * 1000);
+                Console.ReadKey();
+                Console.Clear();
+                Thread.Sleep(1000);
             }
 
         }

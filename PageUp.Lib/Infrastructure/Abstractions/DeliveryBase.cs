@@ -11,12 +11,8 @@ namespace PageUp.Lib.Infrastructure.Abstractions
     {
 
         #region fields
-        
-        /// <summary>
-        /// volume locale field
-        /// </summary>
-        private readonly int _volume;
 
+        private decimal? _cost;
         #endregion
 
         #region ctors
@@ -27,7 +23,7 @@ namespace PageUp.Lib.Infrastructure.Abstractions
 
         protected DeliveryBase(ProductBox box)
         {
-            _volume = box.Depth * box.Height * box.Width;
+            Volume = box.Depth * box.Height * box.Width;
             Box = box;
         }
 
@@ -39,10 +35,7 @@ namespace PageUp.Lib.Infrastructure.Abstractions
         ///     Volume is calculated by Height x Width x Depth
         /// </summary>
         /// <returns></returns>
-        public int GetVolume()
-        {
-            return _volume;
-        }
+        public int Volume { get; }
 
         #endregion
 
@@ -51,7 +44,11 @@ namespace PageUp.Lib.Infrastructure.Abstractions
         /// <summary>
         /// Cost
         /// </summary>
-        public decimal? Cost { get; private set; }
+
+        public decimal? GetCost()
+        {
+            return _cost;
+        }
 
         /// <summary>
         /// Weight
@@ -70,34 +67,34 @@ namespace PageUp.Lib.Infrastructure.Abstractions
                 if (Weight > 50)
                 {
                     rule = Rules.Reject;
-                    Cost = null;
+                    _cost = null;
                 }
-                else if ((Weight > 10) && (Weight <= 50))
+                else if (Weight > 10 && Weight <= 50)
                 {
                     rule = Rules.HeavyParcel;
-                    Cost = (decimal?)(15 * Weight);
+                    _cost = (decimal?)(15 * Weight);
                 }
-                else if (_volume < 1500)
+                else if (Volume < 1500)
                 {
                     rule = Rules.SmallParcel;
-                    Cost = (decimal?)(0.05 * _volume);
+                    _cost = (decimal?)(0.05 * Volume);
                 }
-                else if ((_volume >= 1500) && (_volume < 2500))
+                else if (Volume >= 1500 && Volume < 2500)
                 {
                     rule = Rules.MediumParcel;
-                    Cost = (decimal?)(0.04 * _volume);
+                    _cost = (decimal?)(0.04 * Volume);
                 }
                 else
                 {
                     rule = Rules.LargeParcel;
-                    Cost = (decimal?)(0.03 * _volume);
+                    _cost = (decimal?)(0.03 * Volume);
                 }
 
                 return rule;
             }
         }
 
-        public virtual ProductBox Box { get; }
+        public virtual ProductBox Box { get; set; }
 
         #endregion
 
